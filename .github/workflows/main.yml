@@ -10,17 +10,27 @@ jobs:
     name: A job to say hello
 
     steps:
+    
     # To use this repository's private action, you must check out the repository
     - name: Checkout
       uses: actions/checkout@v1
+    
     - name: Add execute permission
       run: chmod +x ./entrypoint.sh
+    
     - uses: ./ # Uses an action in the root directory
+    
     - name: Hello world action step
       id: hello
       uses: actions/hello-world-docker-action@v1
       with:
         who-to-greet: 'Sonu the Octocat'
+   
     # Use the output from the `hello` step
     - name: Get the output time
       run: echo "The time was ${{ steps.hello.outputs.time }}"
+
+    - uses: actions/upload-artifact@v1
+      with:
+        name: my-artifact
+        path: ./entrypoint.sh
