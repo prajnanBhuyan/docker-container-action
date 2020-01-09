@@ -13,6 +13,8 @@ jobs:
     # To use this repository's private action, you must check out the repository
     - name: Checkout
       uses: actions/checkout@v1
+    - name: Add execute permission
+      run: chmod +x ./entrypoint.sh
     - uses: ./ # Uses an action in the root directory
     - name: Hello world action step
       id: hello
